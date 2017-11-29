@@ -28,11 +28,11 @@ DIRECTION_UP = (0, -1)
 DIRECTION_DOWN = (0, 1)
 
 # Background color of the snake grid.
-COLOR_BACKGROUND = (17,174,207)  # rgb color for white
+COLOR_BACKGROUND = (17,174,207)  # rgb color for light blue
 # This is the color of the snake's head. 
-COLOR_SNAKE_HEAD = (40,46,120)      # rgb color for red
+COLOR_SNAKE_HEAD = (40,46,120)      # rgb color for dark blue
 # This is the color of the rest of the snake.
-COLOR_SNAKE = (0, 255, 0)           # rgb color for green
+COLOR_SNAKE = (81,42,123)           # rgb color for purple
 # This is the color for the snake's food.
 COLOR_FOOD = (255, 200, 0)          # rgb color for orange
 # This is the color for the game over text.
