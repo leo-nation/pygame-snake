@@ -1,7 +1,7 @@
 '''
 Snake game.
 Authors:
-Marc Curry and Waylan Mitchell
+Marc Curry and Waylan Mitchell 
 '''
 
 import pygame
@@ -32,7 +32,7 @@ COLOR_BACKGROUND = (17,174,207)  # rgb color for light blue
 # This is the color of the snake's head. 
 COLOR_SNAKE_HEAD = (40,46,120)      # rgb color for dark blue
 # This is the color of the rest of the snake.
-COLOR_SNAKE = (81,42,123)           # rgb color for purple
+COLOR_SNAKE = (130,78,160)           # rgb color for light purple
 # This is the color for the snake's food.
 COLOR_FOOD = (255, 200, 0)          # rgb color for orange
 # This is the color for the game over text.
@@ -78,9 +78,9 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
-    if snake[0][0] > GRID_WIDTH or snake [0][0] < 0:
+    if snake[0][0] > GRID_WIDTH -1 or snake [0][0] < 0:
         return True
-    elif snake[0][1] > GRID_HEIGHT or snake[0][1] < 0:
+    elif snake[0][1] > GRID_HEIGHT -1 or snake[0][1] < 0:
         return True
     return False
 
@@ -90,7 +90,9 @@ def snake_intersected_body(snake):
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
-    
+    for i in range(len(snake) - 1):
+        if snake[0] ==snake[i + 1]:
+            return True
     return False
 
 def get_score(snake):
@@ -100,23 +102,31 @@ def get_score(snake):
     For example, if the snake has 25 segments, the score is 250.
     """
     
-    return False
+    return len(snake) * 10
 
 def get_game_over_text(score):
     """Returns the text to draw on the screen after the game is over.
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over.'
+    
+    return 'Game Over. Score: ' + str(score)
 
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
     snake - list of 2-tuples representing the positions of each snake segment
-    The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
+    The speed at the beginning of the game should be 5. Once the snake has eaten 5 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
-    return 5
-
+    if len(snake) < 15:
+        return 5
+    elif len(snake) < 25:
+        return 10
+    elif len(snake) < 35:
+        return 15
+    else:
+        return len(snake) / 2
+     
 def move_snake(snake, direction, food):
     """Moves the snake one space in the direction specified and returns whether food was eaten.
     The snake moves by removing the last segment and added a new head to the beginning of the snake list.
