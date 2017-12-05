@@ -59,7 +59,9 @@ def create_food_position():
     The first element is the x position. Must be an int between 0 and GRID_WIDTH - 1, inclusively.
     The second element is the y position. Must be an int between 0 and GRID_HEIGHT - 1, inclusively.
     """
-    return
+    y = random.randint(0, GRID_HEIGHT -1)
+    x = random.randint(0, GRID_WIDTH -1)
+    return (x, y)
 
 def snake_ate_food(snake, food):
     """Returns whether food was eaten by the snake.
@@ -67,6 +69,8 @@ def snake_ate_food(snake, food):
     food - 2-tuple representing the position in the grid of the food
     This function should return True if the head of the snake is in the same position as food.
     """
+    if snake[0] == food:
+        return True
     return False
 
 def snake_ran_out_of_bounds(snake):
@@ -74,6 +78,10 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
+    if snake[0][0] > GRID_WIDTH or snake [0][0] < 0:
+        return True
+    elif snake[0][1] > GRID_HEIGHT or snake[0][1] < 0:
+        return True
     return False
 
 def snake_intersected_body(snake):
@@ -82,6 +90,7 @@ def snake_intersected_body(snake):
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
+    
     return False
 
 def get_score(snake):
@@ -90,7 +99,8 @@ def get_score(snake):
     The user earns 10 points for each of the segments in the snake.
     For example, if the snake has 25 segments, the score is 250.
     """
-    return 0
+    
+    return False
 
 def get_game_over_text(score):
     """Returns the text to draw on the screen after the game is over.
